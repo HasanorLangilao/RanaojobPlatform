@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Fix for root elements to prevent extra scrollbar */
+html {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Fix for dropdown menus causing overflow */
+.dropdown-menu-container {
+  position: absolute;
+  z-index: 50;
+  overflow: visible;
+}
+
+/* Ensure dropdowns don't cause page overflow */
+[data-radix-popper-content-wrapper] {
+  position: fixed !important;
+  z-index: 100 !important;
+  overflow: visible !important;
+}
+
+/* Leaflet Map Styles */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  width: 100% !important;
+}
+
+.job-popup .leaflet-popup-content-wrapper {
+  background-color: white;
+}
+
+/* Fix for Leaflet default styles */
+.leaflet-control-container .leaflet-control {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Full screen layout fixes */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: 100dvh; /* For mobile browsers with dynamic viewport height */
+}
+
+.h-screen {
+  height: 100vh;
+  height: 100dvh; /* For mobile browsers with dynamic viewport height */
+}
+
+/* Make all containers consistent with admin panel */
+.container.mx-auto {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container.mx-auto {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container.mx-auto {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Ensure main content areas fill available space */
+main {
+  flex: 1 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prevent footer from causing overflow */
+footer {
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Fix for any absolute positioned elements */
+[style*="position: absolute"] {
+  max-height: 100vh;
+  overflow: visible;
+}
+
+/* Fix for any fixed positioned elements */
+[style*="position: fixed"] {
+  max-height: 100vh;
+  overflow: visible;
+}
+
+/* Fix for any sticky positioned elements */
+[style*="position: sticky"] {
+  max-height: 100vh;
+}
+
+/* Fix for any modal or dialog elements */
+[role="dialog"],
+[aria-modal="true"] {
+  position: fixed;
+  z-index: 50;
+}
+
+/* NProgress styles */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #ffc107;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+}
+
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #ffc107, 0 0 5px #ffc107;
+  opacity: 1.0;
+  transform: rotate(3deg) translate(0px, -4px);
+}

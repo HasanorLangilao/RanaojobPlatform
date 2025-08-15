@@ -1,0 +1,99 @@
++-------------------+          +----------------------+          +-------------------+
+|       User        |          |   JobseekerProfile   |          |     Education     |
++-------------------+          +----------------------+          +-------------------+
+| id (PK)           |<---------| userId (FK)          |<---------| userId (FK)       |
+| firstName         |          | title                |          | id                |
+| lastName          |          | about                |          | degree            |
+| email             |          | skills               |          | institution       |
+| phone             |          | availability         |          | startDate         |
+| role              |          | salaryExpectation    |          | endDate           |
+| isVerified        |          | isRemote             |          | description       |
+| isDisabled        |          | isRelocate           |          | location          |
+| status            |          | resumeUrl            |          +-------------------+
+| city              |          | resumeFileName       |
+| barangay          |          | resumeUpdatedAt      |          +-------------------+
+| createdAt         |          | languages            |          |    Experience     |
+| updatedAt         |          | additionalDocuments  |          +-------------------+
+| lastActive        |          +----------------------+          | id                |
+| companyName       |                                            | userId (FK)       |
+| industry          |                                            | title             |
+| description       |                                            | company           |
+| businessPermitUrl |          +-------------------+             | location          |
+| otherDocumentsUrl |          |   JobPosting     |             | startDate         |
+| verifiedAt        |          +-------------------+             | endDate           |
+| rejectedAt        |<---------| employerId (FK)   |             | description       |
+| rejectionReason   |          | id (PK)           |             +-------------------+
+| profilePhoto      |          | title             |
++-------------------+          | company           |             +-------------------+
+        ^                      | location          |             |   Certification   |
+        |                      | city              |             +-------------------+
+        |                      | coordinates       |             | id                |
+        |                      | type              |             | userId (FK)       |
+        |                      | category          |             | name              |
+        |                      | salary            |             | issuer            |
+        |                      | description       |             | date              |
+        |                      | requirements      |             | description       |
+        |                      | benefits          |             +-------------------+
+        |                      | applicationDeadline|
+        |                      | contactEmail      |
+        |                      | contactPhone      |             +-------------------+
+        |                      | remote            |             |   JobApplication  |
+        |                      | featured          |             +-------------------+
+        |                      | urgent            |<------------| id (PK)           |
+        |                      | companyName       |             | jobId (FK)        |
+        |                      | createdAt         |             | jobseekerId (FK)  |
+        |                      | updatedAt         |             | status            |
+        |                      | isActive          |             | appliedAt         |
+        |                      | isDeleted         |             | createdAt         |
+        |                      | deletedAt         |             | updatedAt         |
+        |                      | isDeepArchived    |             | statusUpdatedAt   |
+        |                      | applicationsCount |             +-------------------+
+        |                      +-------------------+                      ^
+        |                               ^                                 |
+        |                               |                                 |
+        |                      +-------------------+                      |
+        |                      |    JobReview      |                      |
+        |                      +-------------------+                      |
+        |                      | id (PK)           |                      |
+        |                      | jobId (FK)        |                      |
+        |                      | jobseekerId (FK)  |                      |
+        |                      | employerId (FK)   |                      |
+        |                      | rating            |                      |
+        |                      | review            |                      |
+        |                      | appliedToJob      |                      |
+        |                      | workedAtCompany   |                      |
+        |                      | status            |                      |
+        |                      | anonymous         |                      |
+        |                      | helpful           |                      |
+        |                      | notHelpful        |                      |
+        |                      | createdAt         |                      |
+        |                      | updatedAt         |                      |
+        |                      +-------------------+                      |
+        |                                                                 |
+        |                                                                 |
++-------------------+          +-------------------+          +-------------------+
+| AdminNotification |          |EmployerNotification|         |JobseekerNotification|
++-------------------+          +-------------------+          +-------------------+
+| id (PK)           |          | id (PK)           |          | id (PK)           |
+| title             |          | employerId (FK)   |          | jobseekerId (FK)   |
+| message           |          | title             |          | title             |
+| type              |          | message           |          | message           |
+| adminId (FK)      |          | type              |          | type              |
+| isRead            |          | isRead            |          | createdAt         |
+| createdAt         |          | createdAt         |          | isRead            |
+| link              |          | link              |          | link              |
+| activityType      |          | jobId             |          | applicationId     |
+| relatedUserId     |          | applicationId     |          | applicationStatus |
++-------------------+          +-------------------+          | relatedJob        |
+                                                             +-------------------+
+
++-------------------+          +-------------------+
+|   SiteSettings    |          |     Activity      |
++-------------------+          +-------------------+
+| id (PK)           |          | id (PK)           |
+| general           |          | userId (FK)       |
+| regional          |          | type              |
+| jobListings       |          | description       |
+| appearance        |          | timestamp         |
+| notifications     |          | metadata          |
++-------------------+          +-------------------+ 
