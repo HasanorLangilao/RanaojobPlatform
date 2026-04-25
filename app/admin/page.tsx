@@ -10,16 +10,16 @@ import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
 import { useAdminToast } from "@/components/admin-toast"
 import Link from "next/link"
-import { db } from "@/lib/firebase"
 import { 
   collection, 
   getDocs, 
   query, 
+  db,
   where, 
   orderBy as firestoreOrderBy, 
   limit as firestoreLimit, 
-  Timestamp as FirestoreTimestamp 
-} from "firebase/firestore"
+  Timestamp 
+} from "@/config/firebase"
 
 // Types for our data
 interface EmployerData {
@@ -38,10 +38,10 @@ interface JobData {
 }
 
 // Helper function to format dates
-const formatDate = (timestamp: string | Date | FirestoreTimestamp | null | undefined): string => {
+const formatDate = (timestamp: string | Date | Timestamp | null | undefined): string => {
   if (!timestamp) return "N/A"
   
-  const date = timestamp instanceof FirestoreTimestamp 
+  const date = timestamp instanceof Timestamp 
     ? timestamp.toDate() 
     : new Date(timestamp)
     

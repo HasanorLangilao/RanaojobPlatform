@@ -10,8 +10,8 @@ import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import Image from "next/image"
-import { db } from "@/lib/firebase"
-import { collection, getDocs } from "firebase/firestore"
+
+import { collection, getDocs,db } from "@/config/firebase"
 import { Skeleton } from "@/components/ui/skeleton"
 
 export default function Home() {
