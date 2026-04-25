@@ -14,8 +14,7 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { AlertCircle } from "lucide-react"
 import Link from "next/link"
-import { db } from "@/lib/firebase"
-import { doc, getDoc } from "firebase/firestore"
+import { doc, getDoc,db } from "@/config/firebase"
 import { BackButton } from "@/components/back-button"
 
 export default function PostJobPage() {
