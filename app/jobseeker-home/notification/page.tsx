@@ -9,8 +9,7 @@ import { Footer } from "@/components/footer"
 import { AuthCheckModal } from "@/components/auth-check-modal"
 import { Bell, CheckCircle, Trash2, ArrowLeft, Briefcase, FileCheck, AlertCircle, User } from "lucide-react"
 import Link from "next/link"
-import { db } from "@/lib/firebase"
-import { collection, query, where, getDocs, orderBy, doc, deleteDoc, updateDoc } from "firebase/firestore"
+import { collection, query, where, getDocs, orderBy, doc, deleteDoc,db, updateDoc } from "@/config/firebase"
 import { useToast } from "@/components/ui/use-toast"
 import { formatDistanceToNow } from "date-fns"
 import { Badge } from "@/components/ui/badge"
@@ -201,7 +200,7 @@ export default function JobseekerNotificationsPage() {
     <div className="min-h-screen flex flex-col bg-gray-50">
       <NavBar />
 
-      <main className="flex-grow pt-20 pb-10 px-4">
+      <main className="grow pt-20 pb-10 px-4">
         <div className="container mx-auto max-w-4xl">
           {/* Back button and header */}
           <div className="flex items-center mb-6">
