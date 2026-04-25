@@ -1,5 +1,4 @@
-import { db } from "@/lib/firebase"
-import { collection, addDoc, serverTimestamp, query, where, orderBy, getDocs, doc, deleteDoc, updateDoc, Timestamp, limit } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp, query,db, where, orderBy, getDocs, doc, deleteDoc, updateDoc, Timestamp, limit } from "@/config/firebase"
 import { emailConfig } from "@/lib/config"
 
 export interface AdminNotification {
