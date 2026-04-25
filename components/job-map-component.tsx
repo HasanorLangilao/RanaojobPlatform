@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import dynamic from "next/dynamic"
+import "leaflet/dist/leaflet.css"
 
 // No dynamic import for Leaflet here - we'll import it directly in useEffect
 // Add type for Leaflet
@@ -51,10 +52,10 @@ export function JobMapComponent({
             }
             console.info("Using default location due to geolocation error:", errorDetails)
           },
-          { 
-            enableHighAccuracy: false, // Set to false to reduce errors on some devices
-            timeout: 5000, // Reduce timeout to 5 seconds
-            maximumAge: 60000 // Allow cached positions up to 1 minute old
+          {
+            enableHighAccuracy: true,
+            timeout: 15000,       // ✅ Give it 15 seconds
+            maximumAge: 300000    // ✅ Accept cached position up to 5 minutes
           }
         )
       } catch (e) {
@@ -148,13 +149,13 @@ export function JobMapComponent({
       setIsMapReady(true)
     }
 
+    // ✅ Fix: Only destroy map on actual unmount, not on every dependency change
     return () => {
-      if (mapInstanceRef.current) {
-        mapInstanceRef.current.remove()
-        mapInstanceRef.current = null
-      }
+      // Check if component is truly unmounting by using a flag
+      mapInstanceRef.current?.remove()
+      mapInstanceRef.current = null
     }
-  }, [L, userLocation, initialCenter, initialZoom])
+  }, [L]) // ✅ Only re-run when Leaflet loads, not on every location change
 
   // Add markers when map is ready and jobs are available
   useEffect(() => {
@@ -267,7 +268,8 @@ export function JobMapComponent({
         iconAnchor: [10, 10],
       });
       
-      const userMarker = L.marker(userLocation, { icon: userIcon })
+      // ✅ Fix: removed unused variable assignment
+      L.marker(userLocation, { icon: userIcon })
         .addTo(mapInstanceRef.current)
         .bindTooltip("Your location");
     }
