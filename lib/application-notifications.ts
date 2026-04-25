@@ -1,5 +1,4 @@
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { addDoc, collection, serverTimestamp ,db} from "@/config/firebase";
 import { addJobseekerNotification } from "@/lib/notifications";
 
 /**
