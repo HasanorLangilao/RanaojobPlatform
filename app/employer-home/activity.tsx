@@ -7,8 +7,7 @@ import { NavBar } from "@/components/nav-bar";
 import { Footer } from "@/components/footer";
 import { AuthCheckModal } from "@/components/auth-check-modal";
 import { Users, CheckCircle2, Bell } from "lucide-react";
-import { db } from "@/lib/firebase";
-import { collection, query, where, getDocs, orderBy, Timestamp } from "firebase/firestore";
+import { collection, query, where, getDocs, orderBy, Timestamp,db } from "@/config/firebase";
 import { formatDistanceToNow } from "date-fns";
 
 export default function EmployerActivityPage() {
@@ -77,7 +76,7 @@ export default function EmployerActivityPage() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <NavBar />
-      <main className="flex-grow pt-20 pb-10 px-4">
+      <main className="grow pt-20 pb-10 px-4">
         <div className="container mx-auto max-w-3xl">
           <Card>
             <CardHeader>
@@ -86,11 +85,11 @@ export default function EmployerActivityPage() {
             </CardHeader>
             <CardContent>
               {activities.length > 0 ? (
-                <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
+                <div className="space-y-4 max-h-150 overflow-y-auto pr-2">
                   {activities.map((activity) => (
                     <div key={activity.id} className="flex items-start gap-3 p-3 rounded-md hover:bg-gray-50">
                       <div
-                        className={`p-2 rounded-full flex-shrink-0 
+                        className={`p-2 rounded-full shrink-0 
                         ${
                           activity.type === "application"
                             ? "bg-blue-100"
