@@ -7,7 +7,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Download, Calendar, X } from "lucide-react"
-import { db } from "@/lib/firebase"
 import {
   collection,
   getDocs,
@@ -18,9 +17,10 @@ import {
   Timestamp,
   startAt,
   endAt,
+  db,
   doc,
   getDoc
-} from "firebase/firestore"
+} from "@/config/firebase"
 import { useAdminToast } from "@/components/admin-toast"
 import {
   LineChart,
@@ -869,7 +869,7 @@ export default function ReportsPage() {
             <div className="flex items-center gap-3">
               {!isCustomDateRange ? (
                 <Select value={timePeriod} onValueChange={handlePeriodChange}>
-                  <SelectTrigger className="w-[180px]">
+                  <SelectTrigger className="w-45">
                     <SelectValue placeholder="Select period" />
                   </SelectTrigger>
                   <SelectContent>
@@ -1420,7 +1420,7 @@ export default function ReportsPage() {
 
       {/* Calendar Dialog */}
       <Dialog open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
-        <DialogContent className="sm:max-w-[350px]">
+        <DialogContent className="sm:max-w-87.5">
           <DialogHeader>
             <DialogTitle>Select Date Range</DialogTitle>
           </DialogHeader>
