@@ -17,12 +17,11 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AuthCheckModal } from "@/components/auth-check-modal"
 import { addEmployerActivity } from "@/lib/notifications"
 import { incrementJobApplicationsCount } from "@/lib/jobs"
-import { getDoc, doc, addDoc, collection, serverTimestamp } from "firebase/firestore"
+import { getDoc, doc, addDoc, collection, serverTimestamp,db } from "@/config/firebase"
 import { getUserProfile } from "@/lib/users"
 import { uploadJobseekerResume } from "@/lib/fileUpload"
 import { useToast } from "@/components/ui/use-toast"
 
-import { db } from "@/lib/firebase"
 import { notifyNewApplication } from "@/lib/notifications"
 
 export default function ApplyJobPage({ params }: { params: Promise<{ id: string }> }) {
@@ -401,7 +400,7 @@ export default function ApplyJobPage({ params }: { params: Promise<{ id: string 
     return (
       <div className="flex min-h-screen flex-col">
         <NavBar />
-        <div className="flex-grow flex items-center justify-center">
+        <div className="grow flex items-center justify-center">
           <p>Please log in to continue...</p>
         </div>
         <Footer />
@@ -418,7 +417,7 @@ export default function ApplyJobPage({ params }: { params: Promise<{ id: string 
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
-      <main className="flex-grow flex items-center justify-center py-12 px-4">
+      <main className="grow flex items-center justify-center py-12 px-4">
         <Card className="w-full max-w-2xl">
           <CardHeader>
             <CardTitle className="text-2xl font-bold">Apply for {job.title}</CardTitle>
