@@ -15,8 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { db } from "@/lib/firebase"
-import { collection, getDocs, doc, deleteDoc, updateDoc, query, where, Timestamp, getDoc } from "firebase/firestore"
+import { collection, getDocs, doc, deleteDoc, updateDoc, query, where, Timestamp, db,getDoc } from "@/config/firebase"
 
 // Employer interface
 interface Employer {

@@ -10,7 +10,6 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import { db } from "@/lib/firebase";
 import {
   doc,
   getDoc,
@@ -18,8 +17,9 @@ import {
   getDocs,
   query,
   where,
+  db,
   Timestamp,
-} from "firebase/firestore";
+} from "@/config/firebase";
 import { Button } from "@/components/ui/button";
 
 interface Employer {
@@ -184,7 +184,7 @@ export default function EmployerProfilePage({ params }: PageProps) {
           </CardHeader>
           <CardContent>
             <textarea
-              className="w-full min-h-[80px] border rounded p-2 text-sm"
+              className="w-full min-h-20 border rounded p-2 text-sm"
               placeholder="Add notes about this verification request..."
               value={adminNotes}
               onChange={(e) => setAdminNotes(e.target.value)}
