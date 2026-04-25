@@ -12,8 +12,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { EmployerRating } from "@/components/employer-rating"
 import { MapPin, Globe, Mail, Phone, Calendar, Users, Briefcase, Star } from "lucide-react"
 import { BackButton } from "@/components/back-button"
-import { collection, getDocs, query, where, doc, getDoc, DocumentData, Timestamp, addDoc, updateDoc, increment } from "firebase/firestore"
-import { db } from "@/lib/firebase"
+import { collection, getDocs, query, where, doc, getDoc, DocumentData, Timestamp, addDoc, updateDoc, increment,db } from "@/config/firebase"
 
 interface Review {
   id: string;
@@ -36,24 +35,7 @@ interface Job {
   applicationDeadline: Timestamp | Date;
 }
 
-async function fetchEmployerById(id: string) {
-  try {
-    // Create a promise that rejects after 5 seconds
-    const timeout = new Promise((_, reject) => {
-      setTimeout(() => reject(new Error("Timeout fetching employer data")), 5000);
-    });
 
-    // Create the data fetching promise
-    const dataPromise = getDoc(doc(db, "users", id));
-
-    // Race the timeout against the data fetch
-    const result = await Promise.race([dataPromise, timeout]);
-    return result;
-  } catch (error) {
-    console.error("Error fetching employer:", error);
-    return null;
-  }
-}
 
 export default function EmployerProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const unwrappedParams = React.use(params)
@@ -101,9 +83,9 @@ export default function EmployerProfilePage({ params }: { params: Promise<{ id: 
       } catch (e) {
         // Ignore sessionStorage errors
       }
-
+    const employerRef = doc(db, "users", id)
+    const employerSnap = await getDoc(employerRef)
       // Fetch employer data with timeout
-      const employerSnap = await fetchEmployerById(id);
       
       if (employerSnap && employerSnap.exists()) {
         const employerData = employerSnap.data();
