@@ -1,5 +1,4 @@
-import { db } from "@/lib/firebase"
-import { collection, addDoc, serverTimestamp, getDoc, doc } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp, getDoc, doc,db } from "@/config/firebase"
 import { addEmployerActivity, addJobseekerActivity } from "@/lib/notifications"
 
 export async function recordActivity(
