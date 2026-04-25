@@ -1,10 +1,10 @@
-import { db } from "@/lib/firebase"
 import { 
   doc, 
   getDoc,
   updateDoc, 
-  serverTimestamp
-} from "firebase/firestore"
+  serverTimestamp,
+  db
+} from "@/config/firebase"
 
 /**
  * Get a user profile from Firestore
