@@ -10,7 +10,7 @@ import {
   onAuthStateChanged,
   updateProfile,
   sendPasswordResetEmail,
-} from "firebase/auth";
+} from "firebase/auth"
 
 // FIRESTORE imports
 import {
@@ -28,20 +28,26 @@ import {
   orderBy,
   limit,
   serverTimestamp,
-  Timestamp,
-  onSnapshot
+  Timestamp, 
+  onSnapshot,
+  DocumentData,
+  writeBatch,
+QueryDocumentSnapshot,
+ startAt,
+  endAt,
+  increment
   
 } from "firebase/firestore"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA3_Anh97nwoLjcXbukNv0gjTFOVp_ZheQ",
-  authDomain: "ranaojobs.firebaseapp.com",
-  projectId: "ranaojobs",
-  storageBucket: "ranaojobs.firebasestorage.app",
-  messagingSenderId: "692102557801",
-  appId: "1:692102557801:web:ccfdedf0e9cec5f5ef32f8",
-  measurementId: "G-3NC5MS032J"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
@@ -74,8 +80,14 @@ export {
   orderBy,
   limit,
   serverTimestamp,
-  onSnapshot
-  //storage
-}
+  onSnapshot,
+  Timestamp,
+  writeBatch,
+  QueryDocumentSnapshot,
+   startAt,
+  endAt,
+  increment
+};
+export type { DocumentData };
 
 export default app
