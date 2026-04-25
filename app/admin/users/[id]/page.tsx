@@ -9,8 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { useAdminToast } from "@/components/admin-toast"
 import { User, Mail, MapPin, Calendar, Clock, Briefcase, FileText, AlertTriangle, Loader2 } from "lucide-react"
-import { db } from "@/lib/firebase"
-import { doc, getDoc, updateDoc, deleteDoc, collection, query, where, getDocs, addDoc, serverTimestamp, Timestamp, orderBy, DocumentData, QueryDocumentSnapshot } from "firebase/firestore"
+import { doc, getDoc, updateDoc,db, deleteDoc, collection, query, where, getDocs, addDoc, serverTimestamp, Timestamp, orderBy, DocumentData, QueryDocumentSnapshot } from "@/config/firebase"
 import { formatDistanceToNow } from "date-fns"
 import React from "react"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -819,7 +818,7 @@ export default function UserProfilePage({ params }: { params: Promise<{ id: stri
                       ) : (
                         activities.map((activity) => (
                           <div key={activity.id} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                            <div className="flex-shrink-0">
+                            <div className="shrink-0">
                               {activity.type === "profile_update" && <User className="h-5 w-5 text-blue-500" />}
                               {activity.type === "job_application" && <FileText className="h-5 w-5 text-green-500" />}
                               {activity.type === "job_post" && <Briefcase className="h-5 w-5 text-purple-500" />}
@@ -910,7 +909,7 @@ export default function UserProfilePage({ params }: { params: Promise<{ id: stri
             placeholder="Enter your note here..."
             value={newNote}
             onChange={(e) => setNewNote(e.target.value)}
-            className="min-h-[100px]"
+            className="min-h-25"
           />
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsNoteDialogOpen(false)}>Cancel</Button>
