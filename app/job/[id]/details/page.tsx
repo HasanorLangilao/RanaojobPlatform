@@ -25,8 +25,7 @@ import {
 } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import Link from "next/link"
-import { db } from "@/lib/firebase"
-import { doc, getDoc, Timestamp } from "firebase/firestore"
+import { doc, getDoc, Timestamp,db } from "@/config/firebase"
 import { format } from "date-fns"
 import { JobReviews } from "@/components/job-reviews"
 
@@ -333,7 +332,7 @@ export default function jobdetails({ params }: { params: Promise<{ id: string }>
                         <ul className="space-y-2 text-gray-700">
                           {job.benefits.map((benefit: string, index: number) => (
                             <li key={index} className="flex items-start">
-                              <CheckCircle className="h-5 w-5 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                              <CheckCircle className="h-5 w-5 mr-2 text-green-500 shrink-0 mt-0.5" />
                               <span>{benefit}</span>
                             </li>
                           ))}
