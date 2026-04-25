@@ -131,7 +131,7 @@ export function NotificationDropdown() {
         ) : notifications.length === 0 ? (
           <div className="p-4 text-center text-gray-500">No notifications</div>
         ) : (
-          <DropdownMenuGroup className="max-h-[300px] overflow-y-auto">
+          <DropdownMenuGroup className="max-h-75 overflow-y-auto">
             {notifications.map((notification) => (
               <DropdownMenuItem
                 key={notification.id}
@@ -139,7 +139,7 @@ export function NotificationDropdown() {
                 onClick={() => handleNotificationClick(notification)}
               >
                 <div className="flex gap-3">
-                  <div className="flex-shrink-0 mt-1">
+                  <div className="shrink-0 mt-1">
                     {getNotificationIcon(notification.type)}
                   </div>
                   <div className="flex-1 space-y-1">
