@@ -9,8 +9,7 @@ import { Footer } from "@/components/footer"
 import { AuthCheckModal } from "@/components/auth-check-modal"
 import { Bell, CheckCircle, Trash2, ArrowLeft, UserPlus, Briefcase, FileCheck, Users } from "lucide-react"
 import Link from "next/link"
-import { db } from "@/lib/firebase"
-import { collection, query, where, getDocs, orderBy, doc, deleteDoc, updateDoc } from "firebase/firestore"
+import { collection, query, where, getDocs, orderBy, doc, deleteDoc, updateDoc,db } from "@/config/firebase"
 import { useToast } from "@/components/ui/use-toast"
 import { formatDistanceToNow } from "date-fns"
 
@@ -190,11 +189,12 @@ export default function EmployerNotificationsPage() {
     return <div className="flex justify-center items-center min-h-screen">Loading...</div>
   }
 
+  const newLocal = "flex-grow pt-20 pb-10 px-4"
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <NavBar />
 
-      <main className="flex-grow pt-20 pb-10 px-4">
+      <main className={newLocal}>
         <div className="container mx-auto max-w-4xl">
           {/* Back button and header */}
           <div className="flex items-center mb-6">
