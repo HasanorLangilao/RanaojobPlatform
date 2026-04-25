@@ -15,8 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { db } from "@/lib/firebase"
-import { collection, getDocs, doc, deleteDoc, updateDoc, Timestamp } from "firebase/firestore"
+import { collection, getDocs, doc, deleteDoc, updateDoc, Timestamp ,db} from "@/config/firebase"
 
 // User interface
 interface User {
@@ -82,7 +81,6 @@ export default function ManageUsersPage() {
         setUsers(usersData)
       } catch (error) {
         console.error("Error loading users:", error)
-        error("Failed to load users. Please try again.")
       } finally {
         setIsLoading(false)
       }
