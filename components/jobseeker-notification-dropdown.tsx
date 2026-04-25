@@ -16,8 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useRouter } from "next/navigation"
-import { collection, query, where, getDocs, orderBy, doc, updateDoc, deleteDoc } from "firebase/firestore"
-import { db } from "@/lib/firebase"
+import { collection, query, where, getDocs, orderBy, doc, updateDoc, deleteDoc ,db} from "@/config/firebase"
 import { formatDistanceToNow } from "date-fns"
 import { recordActivity } from "@/lib/activity-logger"
 
@@ -319,7 +318,7 @@ export function JobseekerNotificationDropdown() {
             <p>No new notifications</p>
           </div>
         ) : (
-          <DropdownMenuGroup className="max-h-[300px] overflow-y-auto">
+          <DropdownMenuGroup className="max-h-75 overflow-y-auto">
             {notifications.map((notification) => (
               <DropdownMenuItem
                 key={notification.id}
@@ -327,7 +326,7 @@ export function JobseekerNotificationDropdown() {
                 onClick={() => handleNotificationClick(notification)}
               >
                 <div className="flex gap-3">
-                  <div className="flex-shrink-0 mt-1">{getNotificationIcon(notification.type)}</div>
+                  <div className="shrink-0 mt-1">{getNotificationIcon(notification.type)}</div>
                   <div className="flex-1 space-y-1">
                     <p className="text-sm font-medium">{notification.title}</p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">{notification.message}</p>
