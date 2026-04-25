@@ -12,8 +12,7 @@ import { AuthCheckModal } from "@/components/auth-check-modal"
 import { Calendar, Clock, MapPin, Search, Filter, CheckCircle2, XCircle, Clock3, Trash2, Info } from "lucide-react"
 import Link from "next/link"
 import { BackButton } from "@/components/back-button"
-import { db } from "@/lib/firebase"
-import { collection, query, where, getDocs, orderBy, doc, getDoc, Timestamp } from "firebase/firestore"
+import { collection, query, where, getDocs, orderBy, doc, getDoc, Timestamp,db } from "@/config/firebase"
 import { format, parseISO, isValid } from "date-fns"
 
 
@@ -357,7 +356,7 @@ export default function JobseekerApplicationsPage() {
     <div className="min-h-screen flex flex-col bg-gray-50">
       <NavBar />
 
-      <main className="flex-grow pt-20 pb-10 px-4">
+      <main className="grow pt-20 pb-10 px-4">
         <div className="container mx-auto max-w-6xl">
           <BackButton className="mb-4" href="/jobseeker-home" />
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
