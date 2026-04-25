@@ -9,6 +9,7 @@ import { ErrorSuppressor } from "@/components/error-suppressor"
 import { RouteChangeProvider } from "@/components/route-change-provider"
 import { LoadingSpinner } from "@/components/loading-spinner"
 import Script from "next/script"
+import { Suspense } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -54,7 +55,9 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             <RouteChangeProvider>
+              <Suspense>
               <LoadingSpinner />
+              </Suspense>
               {children}
               <Toaster />
               <PresenceTracker />

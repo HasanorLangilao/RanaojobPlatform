@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { ApplicantList } from "@/components/applicant-list"
 import { JobApplicantCategory } from "@/components/job-applicant-category"
@@ -80,7 +80,9 @@ export default function AllApplicantsPage() {
             </TabsContent>
             
             <TabsContent value="all">
+              <Suspense fallback={<div>Loading...</div>}>
               <ApplicantList />
+              </Suspense>
             </TabsContent>
           </Tabs>
 

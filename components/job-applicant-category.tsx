@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useRouter } from "next/navigation"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -115,7 +115,9 @@ export function JobApplicantCategory() {
           </Button>
           <h2 className="text-xl font-semibold">Applicants for: {selectedJobTitle}</h2>
         </div>
-        <ApplicantList jobId={selectedJobId} />
+               <Suspense fallback={<div>Loading...</div>}>
+        
+        <ApplicantList jobId={selectedJobId} /></Suspense>
       </div>
     )
   }

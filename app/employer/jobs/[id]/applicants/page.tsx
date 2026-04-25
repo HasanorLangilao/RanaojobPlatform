@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { Suspense } from "react"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { ApplicantList } from "@/components/applicant-list"
@@ -48,7 +48,9 @@ export default function JobApplicantsPage({ params }: { params: Promise<{ id: st
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       <BackButton href={`/employer/jobs/${jobId}`} className="mb-6" />
+       <Suspense fallback={<div>Loading...</div>}>
       <ApplicantList jobId={jobId} />
+      </Suspense>
 
       <AuthCheckModal
         isOpen={isAuthModalOpen}
