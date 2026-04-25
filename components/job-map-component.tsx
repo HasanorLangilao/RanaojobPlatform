@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react"
 import dynamic from "next/dynamic"
-import "leaflet/dist/leaflet.css"
 
 // No dynamic import for Leaflet here - we'll import it directly in useEffect
 // Add type for Leaflet
@@ -178,7 +177,7 @@ export function JobMapComponent({
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="${color}" class="w-7 h-7">
               <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
             </svg>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[60%] text-white text-[10px] font-bold">${getJobTypeInitial(jobType)}</div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-[-60%] text-white text-[10px] font-bold">${getJobTypeInitial(jobType)}</div>
           </div>
         `,
         iconSize: [28, 28],
