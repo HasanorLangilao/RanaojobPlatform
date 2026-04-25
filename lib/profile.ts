@@ -1,5 +1,4 @@
-import { db } from "@/lib/firebase"
-import { doc, getDoc } from "firebase/firestore"
+import { doc, getDoc,db } from "@/config/firebase"
 
 /**
  * Calculate the profile completion percentage for an employer
