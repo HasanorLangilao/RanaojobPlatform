@@ -14,8 +14,7 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
-import { db } from "@/lib/firebase"
-import { collection, addDoc, query, where, getDocs, serverTimestamp } from "firebase/firestore"
+import { collection, addDoc, query, where, getDocs, serverTimestamp,db } from "@/config/firebase"
 
 interface EmployerRatingProps {
   employerId: string
