@@ -1,4 +1,3 @@
-import { db } from "@/lib/firebase"
 import { 
   collection, 
   doc, 
@@ -13,8 +12,9 @@ import {
   where,
   orderBy,
   limit,
-  Timestamp
-} from "firebase/firestore"
+  Timestamp,
+  db
+} from "@/config/firebase"
 import { addAdminNotification, addEmployerNotification } from "@/lib/notifications"
 
 export interface JobReview {
