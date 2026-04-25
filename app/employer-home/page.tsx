@@ -10,7 +10,6 @@ import { Footer } from "@/components/footer"
 import { AuthCheckModal } from "@/components/auth-check-modal"
 import { Briefcase, Users, Clock, AlertCircle, ChevronRight, Bell, CheckCircle2, LogIn, Edit, User, FileText, XCircle, Trash2 } from "lucide-react"
 import Link from "next/link"
-import { db } from "@/lib/firebase"
 import { 
   collection, 
   query, 
@@ -18,8 +17,9 @@ import {
   getDocs, 
   getDoc, 
   doc,
+  db,
   DocumentData
-} from "firebase/firestore"
+} from "@/config/firebase"
 import { useToast } from "@/components/ui/use-toast"
 import { formatDistanceToNow, format } from "date-fns"
 import { calculateEmployerProfileCompletion } from "@/lib/profile"
@@ -263,7 +263,7 @@ export default function EmployerHomePage() {
     <div className="min-h-screen flex flex-col bg-gray-50">
       <NavBar />
 
-      <main className="flex-grow pt-20 pb-10 px-4">
+      <main className="grow pt-20 pb-10 px-4">
         <div className="container mx-auto max-w-6xl">
           {errorMessage && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
@@ -445,11 +445,11 @@ export default function EmployerHomePage() {
                 </CardHeader>
                 <CardContent>
                   {recentActivity.length > 0 ? (
-                    <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+                    <div className="space-y-4 max-h-100 overflow-y-auto pr-2">
                       {recentActivity.map((activity) => (
                         <div key={activity.id} className="flex items-start gap-3 p-3 rounded-md hover:bg-gray-50">
                           <div
-                            className={`p-2 rounded-full flex-shrink-0 
+                            className={`p-2 rounded-full shrink-0 
                             ${
                               activity.type === "application"
                                 ? "bg-blue-100"
