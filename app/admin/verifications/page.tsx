@@ -16,8 +16,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { db } from "@/lib/firebase"
-import { collection, getDocs, doc, updateDoc, query, where, Timestamp, orderBy } from "firebase/firestore"
+import { collection, getDocs, doc, updateDoc, query, where, Timestamp, orderBy,db } from "@/config/firebase"
 import Link from "next/link"
 
 // Employer interface
