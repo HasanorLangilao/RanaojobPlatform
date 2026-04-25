@@ -10,10 +10,9 @@ import { Footer } from "@/components/footer"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { User, AlertCircle } from "lucide-react"
-import { db } from "@/lib/firebase"
-import { doc, getDoc } from "firebase/firestore"
+import { doc, getDoc,db } from "@/config/firebase"
 
-export default function ApplicantProfilePage({ params }: { params: { id: string } }) {
+export default function ApplicantProfilePage({ params }: { params:Promise< { id: string }> }) {
   const router = useRouter()
   // Use React.use() to unwrap the params promise
   const unwrappedParams = React.use(params)
@@ -99,7 +98,7 @@ export default function ApplicantProfilePage({ params }: { params: { id: string 
     return (
       <div className="flex min-h-screen flex-col bg-gray-50">
         <NavBar />
-        <main className="flex-grow pt-20 pb-10 px-4">
+        <main className="grow pt-20 pb-10 px-4">
           <div className="container mx-auto max-w-6xl">
             <Alert variant="destructive" className="mb-6">
               <AlertCircle className="h-4 w-4" />
@@ -125,7 +124,7 @@ export default function ApplicantProfilePage({ params }: { params: { id: string 
     <div className="flex min-h-screen flex-col bg-gray-50">
       <NavBar />
       
-      <main className="flex-grow pt-20 pb-10 px-4">
+      <main className="grow pt-20 pb-10 px-4">
         <div className="container mx-auto max-w-6xl">
           {errorMessage && (
             <Alert variant="destructive" className="mb-6">
