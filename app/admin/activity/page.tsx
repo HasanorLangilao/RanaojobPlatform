@@ -7,8 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
 import { Loader2, User, FileText, Briefcase, AlertTriangle, Clock, LogIn, LogOut, Edit, Trash2, Upload, CheckCircle, XCircle, Shield, Bell } from "lucide-react"
-import { db } from "@/lib/firebase"
-import { collection, query, orderBy, getDocs, doc, getDoc, DocumentData, deleteDoc, writeBatch } from "firebase/firestore"
+import { collection, query, orderBy, getDocs, doc, getDoc, DocumentData, deleteDoc, writeBatch,db } from "@/config/firebase"
 import { formatDistanceToNow } from "date-fns"
 import { addEmployerActivity } from "@/lib/notifications"
 import { Button } from "@/components/ui/button"
@@ -251,7 +250,7 @@ export default function AdminActivityPage() {
                 filteredActivities.map((activity) => (
                   <Card key={activity.id} className="p-4">
                     <CardContent className="p-0 flex items-start gap-4">
-                      <div className="flex-shrink-0">
+                      <div className="shrink-0">
                         {activityIcons[activity.type] || <Clock className="h-5 w-5 text-gray-500" />}
                       </div>
                       <div className="flex-1">
