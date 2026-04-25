@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { doc, getDoc, updateDoc } from "firebase/firestore"
-import { db } from "@/lib/firebase"
+import { doc, getDoc, updateDoc,db } from "@/config/firebase"
 import { recordActivity } from "@/lib/activity-logger"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
