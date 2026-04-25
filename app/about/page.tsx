@@ -47,7 +47,7 @@ export default function AboutPage() {
 
               {/* Add error handling for image */}
               <div className="rounded-lg overflow-hidden shadow-lg">
-                <div className="relative w-full h-[300px] md:h-[400px]">
+                <div className="relative w-full h-75 md:h-100">
                   <Image
                     src="/images/mission-team.png"
                     alt="Team collaborating on projects"
@@ -74,45 +74,45 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "Inclusivity",
-                  description:
-                    "We believe in creating equal opportunities for all, regardless of background, gender, or experience level.",
-                },
-                {
-                  title: "Innovation",
-                  description:
-                    "We continuously improve our platform to provide the best experience for job seekers and employers.",
-                },
-                {
-                  title: "Integrity",
-                  description:
-                    "We operate with honesty and transparency in all our interactions and business practices.",
-                },
-                {
-                  title: "Community",
-                  description:
-                    "We are committed to supporting local communities and contributing to economic growth in the region.",
-                },
-                {
-                  title: "Excellence",
-                  description:
-                    "We strive for excellence in everything we do, from customer service to platform development.",
-                },
-                {
-                  title: "Empowerment",
-                  description:
-                    "We empower individuals and businesses to achieve their goals and reach their full potential.",
-                },
-              ].map((value, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
-                  <p className="text-gray-600">{value.description}</p>
-                </div>
-              ))}
-            </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[
+                  {
+                    title: "Inclusivity",
+                    description:
+                      "We believe in creating equal opportunities for all, regardless of background, gender, or experience level.",
+                  },
+                  {
+                    title: "Innovation",
+                    description:
+                      "We continuously improve our platform to provide the best experience for job seekers and employers.",
+                  },
+                  {
+                    title: "Integrity",
+                    description:
+                      "We operate with honesty and transparency in all our interactions and business practices.",
+                  },
+                  {
+                    title: "Community",
+                    description:
+                      "We are committed to supporting local communities and contributing to economic growth in the region.",
+                  },
+                  {
+                    title: "Excellence",
+                    description:
+                      "We strive for excellence in everything we do, from customer service to platform development.",
+                  },
+                  {
+                    title: "Empowerment",
+                    description:
+                      "We empower individuals and businesses to achieve their goals and reach their full potential.",
+                  },
+                ].map((value, index) => (
+                  <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                    <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
+                    <p className="text-gray-600">{value.description}</p>
+                  </div>
+                ))}
+              </div>
           </div>
         </section>
 
@@ -124,47 +124,59 @@ export default function AboutPage() {
               <p className="text-gray-600 max-w-2xl mx-auto">Meet the dedicated Individuals behind RANAOJobs</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center mx-auto max-w-4xl">
-              {[
-                {
-                  name: "Joseph C. Sieras, MSIT",
-                  role: "Capstone Adviser",
-                  bio: "College of Information and Computing Sciences Department of Information Sciences Chairperson.",
-                  image: "/images/Sir_jong.jpg",
-                },
-                {
-                  name: "Hasanor Langilao",
-                  role: "Developer",
-                  bio: "Contributed to the development of the Ranao Job Portal, focusing on core features and backend functionality.",
-                  image: "/images/Hasanor.png",
-                },
-                {
-                  name: "Maecole kate Mejos",
-                  role: "Developer",
-                  bio: "Worked on the Ranao Job Portal as a developer, helping build and improve the user interface.",
-                  image: "/images/maecole.jpg",
-                },
-              ].map((member, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-md text-center">
-                  <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-                    {member.image ? (
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        width={96}
-                        height={96}
-                        className="object-cover w-24 h-24 rounded-full"
-                      />
-                    ) : (
-                      <span className="text-2xl font-bold text-gray-400">{member.name.charAt(0)}</span>
-                    )}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                  <p className="text-yellow-500 font-medium mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm">{member.bio}</p>
-                </div>
-              ))}
-            </div>
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 justify-center mx-auto max-w-7xl">
+  {[
+    {
+      name: "Joseph C. Sieras, MSIT",
+      role: "Capstone Adviser",
+      bio: "College of Information and Computing Sciences Department of Information Sciences former Chairperson.",
+      image: "/images/Sir_jong.jpg",
+    },
+    {
+      name: "Hasanor Langilao",
+      role: "Developer",
+      bio: "Contributed to the development of the Ranao Job Portal, focusing on core features and backend functionality.",
+      image: "/images/Hasanor.png",
+    },
+    {
+      name: "Maecole kate Mejos",
+      role: "Developer",
+      bio: "Worked on the Ranao Job Portal as a developer, helping build and improve the user interface.",
+      image: "/images/maecole.jpg",
+    },
+    {
+      name: "Alinor Abdulgafor",
+      role: "Developer",
+      bio: "Played a key role in developing the Ranao Job Portal, with a focus on implementing core features and backend functionality.",
+      image: "/images/Alinor.jpg",
+    }
+  ].map((member, index) => (
+    <div key={index} className="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-xl transition">
+      
+      {/* Bigger Image */}
+      <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden">
+        {member.image ? (
+          <Image
+            src={member.image}
+            alt={member.name}
+            width={128}
+            height={128}
+            className="object-cover w-32 h-32 rounded-full"
+          />
+        ) : (
+          <span className="text-3xl font-bold text-gray-400">
+            {member.name.charAt(0)}
+          </span>
+        )}
+      </div>
+
+      {/* Bigger Text */}
+      <h3 className="text-2xl font-semibold mb-2">{member.name}</h3>
+      <p className="text-yellow-500 text-lg font-medium mb-4">{member.role}</p>
+      <p className="text-gray-600 text-base">{member.bio}</p>
+    </div>
+  ))}
+</div>
           </div>
         </section>
       </main>
