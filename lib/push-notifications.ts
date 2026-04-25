@@ -1,5 +1,5 @@
 import { db } from '@/lib/firebase'
-import { collection, addDoc, serverTimestamp, doc, getDoc, updateDoc } from 'firebase/firestore'
+import { collection, addDoc, serverTimestamp, doc, getDoc, updateDoc } from '@/config/firebase'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 
 // Store a push notification subscription in Firestore
