@@ -12,7 +12,7 @@ import { AlertCircle, Eye, EyeOff } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth, db } from "@/lib/firebase"
-import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore"
+import { doc, getDoc, updateDoc, serverTimestamp } from "@/config/firebase"
 import { recordActivity, logLoginActivity } from "@/lib/activity-logger"
 import { addEmployerActivity } from "@/lib/notifications"
 
