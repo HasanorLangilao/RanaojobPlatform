@@ -1,5 +1,4 @@
-import { db } from "@/lib/firebase"
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp ,db} from "@/config/firebase"
 
 /**
  * Simple test function to directly add a notification to the jobseekernotifications collection
