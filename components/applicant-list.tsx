@@ -49,8 +49,7 @@ import {
   FileText,
   XCircle
 } from "lucide-react"
-import { db } from "@/lib/firebase"
-import { doc, getDoc, updateDoc, serverTimestamp, collection, query, where, getDocs, orderBy, Timestamp } from "firebase/firestore"
+import { doc, getDoc,db, updateDoc, serverTimestamp, collection, query, where, getDocs, orderBy, Timestamp } from "@/config/firebase"
 import { format, parseISO, isValid } from "date-fns"
 import { useToast } from "@/components/ui/use-toast"
 import { addEmployerActivity, notifyJobseekerApplicationAccepted, notifyJobseekerApplicationRejected, sendJobseekerInterviewNotification, sendJobseekerHireNotification } from "@/lib/notifications"
@@ -146,7 +145,7 @@ export function ApplicantList({ jobId }: ApplicantListProps) {
           const jobData = jobDoc.exists() ? jobDoc.data() : null;
           
           // Check if the job belongs to the current employer
-          if (jobDoc.exists() && jobData.employerId !== user.id) {
+          if (jobDoc.exists() && jobData?.employerId !== user.id) {
             console.log("This job does not belong to the current employer");
             setApplicants([]);
             setFilteredApplicants([]);
@@ -874,7 +873,7 @@ export function ApplicantList({ jobId }: ApplicantListProps) {
           />
         </div>
         <Select value={statusFilter} onValueChange={setStatusFilter}>
-          <SelectTrigger className="w-full md:w-[180px]">
+          <SelectTrigger className="w-full md:w-45">
             <SelectValue placeholder="Filter by status" />
           </SelectTrigger>
           <SelectContent>
@@ -1227,7 +1226,7 @@ export function ApplicantList({ jobId }: ApplicantListProps) {
       </Dialog>
         {/* Interview Scheduling Dialog */}
             <Dialog open={showInterviewDialog} onOpenChange={setShowInterviewDialog}>
-              <DialogContent className="sm:max-w-[425px]">
+              <DialogContent className="sm:max-w-106.25">
                 <DialogHeader>
                   <DialogTitle>Schedule Interview</DialogTitle>
                   <DialogDescription>
