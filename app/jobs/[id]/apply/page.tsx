@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { collection, addDoc, serverTimestamp, doc, getDoc } from "firebase/firestore"
-import { db } from "@/lib/firebase"
+import { collection, addDoc, serverTimestamp, doc, getDoc, db} from "@/config/firebase"
 import { recordActivity } from "@/lib/activity-logger"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
