@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from 'react'
-import { doc, updateDoc, serverTimestamp } from 'firebase/firestore'
+import { doc, updateDoc, serverTimestamp } from '@/config/firebase'
 import { db } from '@/lib/firebase'
 import { useAuth } from './use-auth'
 
