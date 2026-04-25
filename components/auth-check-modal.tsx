@@ -68,7 +68,7 @@ export function AuthCheckModal({ isOpen, onClose, message, title, requiredRole, 
   return (
     <>
       <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-106.25">
           <DialogHeader>
             <DialogTitle>{title || "Authentication Required"}</DialogTitle>
             <DialogDescription>
