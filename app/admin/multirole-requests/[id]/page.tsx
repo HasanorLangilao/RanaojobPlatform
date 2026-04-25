@@ -9,8 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { useAdminToast } from "@/components/admin-toast"
 import { Loader2, User, Mail, Building, Calendar, CheckCircle, XCircle, ArrowLeft, Briefcase } from "lucide-react"
-import { db } from "@/lib/firebase"
-import { doc, getDoc } from "firebase/firestore"
+import { doc, getDoc,db } from "@/config/firebase"
 import { approveMultiRoleUpgrade, rejectMultiRoleUpgrade } from "@/lib/users"
 import { format } from "date-fns"
 import {
@@ -411,7 +410,7 @@ export default function MultiRoleRequestPage({ params }: { params: Promise<{ id:
               placeholder="Reason for rejection"
               value={rejectionReason}
               onChange={(e) => setRejectionReason(e.target.value)}
-              className="min-h-[100px]"
+              className="min-h-25"
             />
           </div>
           <DialogFooter>
