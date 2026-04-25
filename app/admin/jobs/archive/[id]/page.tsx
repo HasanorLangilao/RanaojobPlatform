@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Button } from "@/components/ui/button"
 import { useAdminToast } from "@/components/admin-toast"
 import { Separator } from "@/components/ui/separator"
+import { useToast } from "@/hooks/use-toast"
 import { 
   Loader2, 
   ArrowLeft,
@@ -19,8 +20,7 @@ import {
   Clock,
   User
 } from "lucide-react"
-import { doc, getDoc } from "firebase/firestore"
-import { db } from "@/lib/firebase"
+import { doc, getDoc,db } from "@/config/firebase"
 import { format } from "date-fns"
 import { permanentlyDeleteArchivedJob } from "@/lib/jobs"
 import { Badge } from "@/components/ui/badge"
@@ -28,7 +28,8 @@ import { Badge } from "@/components/ui/badge"
 export default function AdminArchivedJobDetailPage({ params }: { params: { id: string } }) {
   const jobId = params.id
   const router = useRouter()
-  const { toast, error } = useAdminToast()
+  const { toast } = useToast()
+  const { error } = useAdminToast()
   const [isLoading, setIsLoading] = useState(true)
   const [job, setJob] = useState<any>(null)
   const [isDeleting, setIsDeleting] = useState(false)
