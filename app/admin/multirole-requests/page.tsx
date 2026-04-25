@@ -17,8 +17,7 @@ import {
 } from "@/components/ui/dialog"
 import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { db } from "@/lib/firebase"
-import { collection, getDocs, doc, query, where, orderBy, Timestamp } from "firebase/firestore"
+import { collection, getDocs, doc, query, where, orderBy, Timestamp,db } from "@/config/firebase"
 import { Loader2, CheckCircle, XCircle } from "lucide-react"
 import { approveMultiRoleUpgrade, rejectMultiRoleUpgrade } from "@/lib/users"
 import { format } from "date-fns"
@@ -415,7 +414,7 @@ export default function MultiRoleRequestsPage() {
               placeholder="Reason for rejection"
               value={rejectionReason}
               onChange={(e) => setRejectionReason(e.target.value)}
-              className="min-h-[100px]"
+              className="min-h-25"
             />
           </div>
           <DialogFooter>
