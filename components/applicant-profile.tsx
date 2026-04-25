@@ -30,8 +30,7 @@ import {
   XCircle,
   Eye
 } from "lucide-react"
-import { db } from "@/lib/firebase"
-import { doc, getDoc, updateDoc, serverTimestamp, collection, query, where, getDocs, addDoc, Timestamp } from "firebase/firestore"
+import { doc, getDoc, updateDoc, serverTimestamp, collection, query, where, getDocs, addDoc, Timestamp,db } from "@/config/firebase"
 import { format, parseISO, formatDistanceToNow, isValid, isPast } from "date-fns"
 import { useToast } from "@/components/ui/use-toast"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -1134,7 +1133,7 @@ export function ApplicantProfile({ applicantId }: ApplicantProfileProps) {
 
       {/* Interview Scheduling Dialog */}
       <Dialog open={showInterviewDialog} onOpenChange={setShowInterviewDialog}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-106.25">
           <DialogHeader>
             <DialogTitle>Schedule Interview</DialogTitle>
             <DialogDescription>
