@@ -158,124 +158,111 @@ export function RegistrationForm({ onLoginClick, onRegisterSuccess }: Registrati
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  setError("")
 
-    // Validation
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match")
-      return
-    }
-
-    if (!formData.agreeToTerms) {
-      setError("You must agree to the terms and conditions")
-      return
-    }
-
-    // Role-specific validation
-    if ((formData.role === "employer" || formData.isMultiRole) && !formData.companyName) {
-      setError("Company name is required for employer accounts")
-      return
-    }
-
-    if ((formData.role === "employer" || formData.isMultiRole) && !formData.businessPermit) {
-      setError("Business permit is required for employer accounts")
-      return
-    }
-
-    setIsLoading(true)
-
-    try {
-      // Create user with Firebase Authentication
-      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password)
-      const user = userCredential.user
-
-      // Handle business permit file if provided
-      let businessPermitPath = null
-      if (formData.businessPermit && (formData.role === "employer" || formData.isMultiRole)) {
-        try {
-          // Create FormData for file upload
-          const uploadData = new FormData()
-          uploadData.append('file', formData.businessPermit)
-
-          // Upload file using the API route
-          const response = await fetch('/api/upload', {
-            method: 'POST',
-            body: uploadData,
-          })
-
-          const result = await response.json()
-
-          if (!response.ok) {
-            throw new Error(result.error || 'Failed to upload business permit')
-          }
-
-          businessPermitPath = result.path
-        } catch (error) {
-          console.error('Error uploading business permit:', error)
-          setError('Failed to upload business permit. Please try again.')
-          return
-        }
-      }
-
-      // Prepare user data for Firestore
-      const userData = {
-        // Only include first/last name for jobseeker or multi-role
-        ...(formData.role === "jobseeker" || formData.isMultiRole
-          ? { firstName: formData.firstName, lastName: formData.lastName }
-          : {}),
-        email: formData.email,
-        role: formData.isMultiRole ? "multi" : formData.role,
-        activeRole: formData.role,
-        createdAt: new Date().toISOString(),
-        // Address data for both roles
-        barangay: formData.barangay,
-        street: formData.street,
-        city: formData.city,
-        province: formData.province,
-        address: `${formData.street}, ${formData.barangay}, ${formData.city}, ${formData.province}`,
-        // Employer-specific data
-        ...(formData.role === "employer" || formData.isMultiRole
-          ? {
-            companyName: formData.companyName,
-            businessPermitPath: businessPermitPath,
-            isVerified: false,
-          }
-          : {}),
-      }
-
-      // Add user data to Firestore
-      await setDoc(doc(db, "users", user.uid), userData)
-
-      // Call success callback if provided
-      if (onRegisterSuccess) {
-        onRegisterSuccess()
-      }
-
-      // Reset form
-      resetForm()
-      
-      // Show success modal instead of redirecting
-      setShowSuccessModal(true)
-    } catch (err: any) {
-      console.error(err)
-      if (err.code === "auth/email-already-in-use") {
-        setError("Email already in use. Please try another email or login.")
-        // Focus email field and scroll to error
-        setTimeout(() => {
-          emailInputRef.current?.focus()
-          emailInputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })
-        }, 100)
-      } else if (err.code === "auth/weak-password") {
-        setError("Password is too weak. Please use a stronger password.")
-      } else {
-        setError("An error occurred during registration: " + err.message)
-      }
-    } finally {
-      setIsLoading(false)
-    }
+  // Validation
+  if (formData.password !== formData.confirmPassword) {
+    setError("Passwords do not match")
+    return
   }
+
+  if (!formData.agreeToTerms) {
+    setError("You must agree to the terms and conditions")
+    return
+  }
+
+  if ((formData.role === "employer" || formData.isMultiRole) && !formData.companyName) {
+    setError("Company name is required for employer accounts")
+    return
+  }
+
+  if ((formData.role === "employer" || formData.isMultiRole) && !formData.businessPermit) {
+    setError("Business permit is required for employer accounts")
+    return
+  }
+
+  // ✅ Fix 1: Move setIsLoading BEFORE try block
+  setIsLoading(true)
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password)
+    const user = userCredential.user
+
+    let businessPermitPath = null
+    if (formData.businessPermit && (formData.role === "employer" || formData.isMultiRole)) {
+      try {
+        const uploadData = new FormData()
+        uploadData.append('file', formData.businessPermit)
+
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: uploadData,
+        })
+
+        const result = await response.json()
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to upload business permit')
+        }
+
+        businessPermitPath = result.path
+      } catch (error) {
+        console.error('Error uploading business permit:', error)
+        setError('Failed to upload business permit. Please try again.')
+        setIsLoading(false) // ✅ Fix 2: Unlock button on upload failure
+        return
+      }
+    }
+
+    const userData = {
+      // ✅ Fix 3: Always include name fields regardless of role
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      role: formData.isMultiRole ? "multi" : formData.role,
+      activeRole: formData.role,
+      createdAt: new Date().toISOString(),
+      barangay: formData.barangay,
+      street: formData.street,
+      city: formData.city,
+      province: formData.province,
+      address: `${formData.street}, ${formData.barangay}, ${formData.city}, ${formData.province}`,
+      ...(formData.role === "employer" || formData.isMultiRole
+        ? {
+          companyName: formData.companyName,
+          businessPermitPath: businessPermitPath,
+          isVerified: false,
+        }
+        : {}),
+    }
+
+    await setDoc(doc(db, "users", user.uid), userData)
+
+    if (onRegisterSuccess) {
+      onRegisterSuccess()
+    }
+
+    resetForm()
+    setShowSuccessModal(true)
+  } catch (err: any) {
+    console.error(err)
+    if (err.code === "auth/email-already-in-use") {
+      setError("Email already in use. Please try another email or login.")
+      setTimeout(() => {
+        emailInputRef.current?.focus()
+        emailInputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })
+      }, 100)
+    } else if (err.code === "auth/weak-password") {
+      setError("Password is too weak. Please use a stronger password.")
+    } else {
+      setError("An error occurred during registration: " + err.message)
+    }
+  } finally {
+    setIsLoading(false)
+  }
+}
 
   // Function to handle navigating to login
   const handleGoToLogin = () => {
@@ -450,7 +437,7 @@ export function RegistrationForm({ onLoginClick, onRegisterSuccess }: Registrati
               </div>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 ">
               <Label htmlFor="barangay">Barangay</Label>
               {(formData.role === "employer" || formData.isMultiRole) && formData.customLocation ? (
                 <Input
@@ -461,10 +448,10 @@ export function RegistrationForm({ onLoginClick, onRegisterSuccess }: Registrati
                 />
               ) : (
                 <Select value={formData.barangay} onValueChange={handleBarangayChange}>
-                  <SelectTrigger>
+                  <SelectTrigger >
                     <SelectValue placeholder="Select barangay" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white dark:bg-zinc-950">
                     {marawiBarangays.map((barangay) => (
                       <SelectItem key={barangay} value={barangay}>
                         {barangay}
