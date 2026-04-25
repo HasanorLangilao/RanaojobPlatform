@@ -37,7 +37,7 @@ export function AuthModal({ isOpen, onClose, defaultView = "login" }: AuthModalP
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-[425px] md:max-w-[500px] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-106.25 md:max-w-125 max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-bold">
             {view === "login" ? "Login to RANAOJobs" : 
