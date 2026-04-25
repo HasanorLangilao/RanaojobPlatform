@@ -59,7 +59,7 @@ export default function AllApplicantsPage() {
   return (
     <div>
       <NavBar />
-      <main className="flex-grow pt-20 pb-10 px-4">
+      <main className="grow pt-20 pb-10 px-4">
         <div className="container mx-auto max-w-6xl">
           <BackButton className="mb-4" href="/employer-home" />
           
