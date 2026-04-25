@@ -19,8 +19,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Textarea } from "@/components/ui/textarea"
-import { db } from "@/lib/firebase"
-import { doc, getDoc, updateDoc, Timestamp } from "firebase/firestore"
+import { doc, getDoc, updateDoc, Timestamp,db } from "@/config/firebase"
 
 // Format date helper
 const formatDate = (timestamp: Timestamp | string | null | undefined): string => {
@@ -408,7 +407,7 @@ export default function VerificationDetailsPage({ params }: { params: Promise<{ 
                         </div>
                         
                         {/* Document Preview */}
-                        <div className="w-full h-[500px] border rounded-md overflow-hidden bg-gray-50">
+                        <div className="w-full h-125 border rounded-md overflow-hidden bg-gray-50">
                           {doc.url.toLowerCase().endsWith('.pdf') ? (
                             <iframe
                               src={doc.url}
@@ -492,7 +491,7 @@ export default function VerificationDetailsPage({ params }: { params: Promise<{ 
             <CardDescription>Internal notes about this verification request</CardDescription>
           </CardHeader>
           <CardContent>
-            <Textarea placeholder="Add notes about this verification request..." className="min-h-[100px]" />
+            <Textarea placeholder="Add notes about this verification request..." className="min-h-25" />
           </CardContent>
           <CardFooter>
             <Button className="bg-yellow-500 hover:bg-yellow-600 text-black">Save Notes</Button>
