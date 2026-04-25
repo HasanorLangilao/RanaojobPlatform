@@ -1,7 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@import "tailwindcss";
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -29,13 +26,13 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));  /* ← replaces @apply border-border */
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));  /* ← replaces @apply bg-background */
+    color: hsl(var(--foreground));             /* ← replaces @apply text-foreground */
   }
 }
-
 /* Fix for root elements to prevent extra scrollbar */
 html {
   height: 100%;
