@@ -22,13 +22,12 @@ import { getProvinces, getCitiesByProvince, getBarangaysByCity } from "@/lib/loc
 import dynamic from 'next/dynamic'
 import { LatLngExpression } from 'leaflet'
 import Link from "next/link"
-import { db } from "@/lib/firebase"
-import { doc, getDoc } from "firebase/firestore"
+import { doc, getDoc,db } from "@/config/firebase"
 
 // Dynamically import the Map component to avoid SSR issues
 const Map = dynamic(() => import('@/components/map'), {
   ssr: false,
-  loading: () => <div className="h-[300px] bg-gray-100 rounded-md animate-pulse" />
+  loading: () => <div className="h-75 bg-gray-100 rounded-md animate-pulse" />
 })
 
 // Philippine cities with coordinates
@@ -703,7 +702,7 @@ export function JobPostingForm({ initialData, isEdit = false, userData: userData
                 value={formData.description}
                 onChange={handleChange}
                 placeholder="Provide a detailed description of the job role and responsibilities"
-                className={`min-h-[120px] ${errors.description ? "border-red-500" : ""}`}
+                className={`min-h-30 ${errors.description ? "border-red-500" : ""}`}
               />
               {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
             </div>
@@ -761,7 +760,7 @@ export function JobPostingForm({ initialData, isEdit = false, userData: userData
                 value={formData.benefits}
                 onChange={handleChange}
                 placeholder="Describe the benefits and perks offered with this position"
-                className="min-h-[100px]"
+                className="min-h-25"
               />
             </div>
           </div>
@@ -876,7 +875,7 @@ export function JobPostingForm({ initialData, isEdit = false, userData: userData
                   </Button>
                 </div>
 
-                <div className="h-[300px] rounded-md overflow-hidden border">
+                <div className="h-75 rounded-md overflow-hidden border">
                   <Map
                     key={selectedLocation.coordinates.join(",")}
                     center={selectedLocation.coordinates}
