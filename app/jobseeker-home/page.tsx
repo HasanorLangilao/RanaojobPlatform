@@ -16,7 +16,6 @@ import { calculateJobseekerProfileCompletion } from "@/lib/profileCompletion"
 import { getUserProfile } from "@/lib/users"
 import { getRecentJobPostings } from "@/lib/jobs"
 import { JobseekerNotificationDropdown } from "@/components/jobseeker-notification-dropdown"
-import { db } from "@/lib/firebase"
 import { 
   collection, 
   getDocs, 
@@ -26,8 +25,8 @@ import {
   // limit as firestoreLimit,
   Timestamp as FirestoreTimestamp ,
   DocumentData,
-  
-} from "firebase/firestore"
+  db
+} from "@/config/firebase"
 import { format } from "date-fns"
 
 interface Job {
@@ -422,7 +421,7 @@ export default function JobseekerHomePage() {
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
       <NavBar />
 
-      <main className="flex-grow pt-20 pb-10 px-4">
+      <main className="grow pt-20 pb-10 px-4">
         <div className="container mx-auto max-w-6xl">
           {/* Welcome Banner */}
           <div className="bg-white rounded-lg shadow-md p-6 mb-6">
@@ -575,11 +574,11 @@ export default function JobseekerHomePage() {
               </CardHeader>
               <CardContent>
                 {recentActivity.length > 0 ? (
-                  <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+                  <div className="space-y-4 max-h-100 overflow-y-auto pr-2">
                     {recentActivity.map((activity) => (
                       <div key={activity.id} className="flex items-start gap-3 p-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800">
                         <div
-                          className={`p-2 rounded-full flex-shrink-0 
+                          className={`p-2 rounded-full shrink-0 
                           ${
                             activity.type === "application"
                               ? "bg-blue-100 dark:bg-blue-900/20"
