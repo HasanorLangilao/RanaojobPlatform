@@ -10,8 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import { useAdminToast } from "@/components/admin-toast"
-import { db, storage } from "@/lib/firebase"
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
+import { doc, getDoc, setDoc, updateDoc,db,  } from "@/config/firebase"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { z } from "zod"
@@ -143,21 +142,21 @@ export default function SettingsPage() {
     loadSettings()
   }, [error])
 
-  const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
+  // const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0]
+  //   if (!file) return
 
-    try {
-      const storageRef = ref(storage, `logos/${file.name}`)
-      await uploadBytes(storageRef, file)
-      const url = await getDownloadURL(storageRef)
-      updateSettings('general', 'logoUrl', url)
-      success("Logo uploaded successfully")
-    } catch (err) {
-      console.error("Error uploading logo:", err)
-      error("Failed to upload logo")
-    }
-  }
+  //   try {
+  //     const storageRef = ref(storage, `logos/${file.name}`)
+  //     await uploadBytes(storageRef, file)
+  //     const url = await getDownloadURL(storageRef)
+  //     updateSettings('general', 'logoUrl', url)
+  //     success("Logo uploaded successfully")
+  //   } catch (err) {
+  //     console.error("Error uploading logo:", err)
+  //     error("Failed to upload logo")
+  //   }
+  // }
 
   const handleSaveSettings = async () => {
     setIsSaving(true)
