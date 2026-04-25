@@ -8,8 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Search, X } from "lucide-react"
-import { db } from "@/lib/firebase"
-import { collection, query, getDocs, where, DocumentData } from "firebase/firestore"
+import { collection, query, getDocs, where, DocumentData ,db} from "@/config/firebase"
 
 // Define job types
 const JOB_TYPES = ["Full-time", "Part-time", "Remote", "Contract", "Internship"]
