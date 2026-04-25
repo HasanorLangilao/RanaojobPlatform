@@ -11,12 +11,12 @@ import { Footer } from "@/components/footer"
 import { Search, MapPin, X } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
-import { db } from "@/lib/firebase"
-import { collection, getDocs, query, where, DocumentData } from "firebase/firestore"
+import { db,collection, getDocs, query, where ,DocumentData } from "@/config/firebase"
+ 
 import { JobFilter, JobFilterValues } from "@/components/job-filter"
 
 export default function FindJobsPage() {
-  const router = useRouter()
+  // const router = useRouter()
   const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(true)
   const [mounted, setMounted] = useState(false)
@@ -285,7 +285,7 @@ export default function FindJobsPage() {
                 <Input 
                   type="text" 
                   placeholder="Job title, keywords, or company" 
-                  className="pl-10 h-12  text-black" 
+                  className="pl-10 h-12  text-white" 
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -295,7 +295,7 @@ export default function FindJobsPage() {
                 <Input 
                   type="text" 
                   placeholder="City, state, or remote" 
-                  className="pl-10 h-12 text-black" 
+                  className="pl-10 h-12 text-white" 
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                 />
@@ -313,7 +313,7 @@ export default function FindJobsPage() {
         <div className="bg-gray-100 border-t border-b border-gray-200 p-4">
           <div className="container mx-auto max-w-6xl">
             <h3 className="font-bold mb-2">Firestore Debug Data:</h3>
-            <div className="bg-white p-4 rounded shadow-sm overflow-auto max-h-[300px]">
+            <div className="bg-white p-4 rounded shadow-sm overflow-auto max-h-75">
               <pre className="text-xs whitespace-pre-wrap">
                 {JSON.stringify(rawJobData, null, 2)}
               </pre>
@@ -328,7 +328,7 @@ export default function FindJobsPage() {
       )}
 
       {/* Main Content */}
-      <section className="py-10 px-4 bg-gray-50 flex-grow">
+      <section className="py-10 px-4 bg-gray-50 grow">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Filters Sidebar */}
@@ -387,7 +387,7 @@ export default function FindJobsPage() {
 
                   <div className="flex items-center">
                     <Select defaultValue={sortBy} onValueChange={handleSortChange}>
-                      <SelectTrigger className="w-[180px]">
+                      <SelectTrigger className="w-45">
                         <SelectValue placeholder="Sort by" />
                       </SelectTrigger>
                       <SelectContent>
