@@ -328,7 +328,7 @@ export function NavBar() {
               ) : (
                 <>
                   <ModeToggle />
-                  <Button variant="outline" size="sm" onClick={openLoginModal}>
+                  <Button size="sm"    className=" border border-input text-white" onClick={openLoginModal}>
                     Login
                   </Button>
                   <Button
