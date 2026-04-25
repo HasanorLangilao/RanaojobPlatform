@@ -12,11 +12,11 @@ import {
   ArrowLeft,
   Trash2 
 } from "lucide-react"
-import { collection, getDocs, query, orderBy, where, doc, deleteDoc } from "firebase/firestore"
-import { db } from "@/lib/firebase"
+import { collection, getDocs, query, orderBy, where, doc, deleteDoc ,db} from "@/config/firebase"
 import { format } from "date-fns"
 import { Input } from "@/components/ui/input"
 import { permanentlyDeleteArchivedJob } from "@/lib/jobs"
+import { useToast } from "@/hooks/use-toast"
 
 // Archive Job interface
 interface ArchivedJob {
@@ -41,7 +41,8 @@ interface AdminAction {
 
 export default function AdminJobsArchivePage() {
   const router = useRouter()
-  const { toast, error } = useAdminToast()
+    const { toast } = useToast()
+  const { error } = useAdminToast()
   const [isLoading, setIsLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   
