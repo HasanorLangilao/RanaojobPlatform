@@ -80,13 +80,13 @@ export default function Home() {
             </p>
 
             {/* Search Bar */}
-            <form onSubmit={handleSearch} className="w-full max-w-4xl flex flex-col md:flex-row gap-3 mb-6">
+            <form onSubmit={handleSearch} className="w-full max-w-4xl flex flex-col md:flex-row gap-3 mb-6 ">
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <Input 
                   type="text" 
                   placeholder="Job title, keywords, or company" 
-                  className="pl-10 h-12 text-black" 
+                  className="pl-10 h-12 text-white" 
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -96,7 +96,7 @@ export default function Home() {
                 <Input 
                   type="text" 
                   placeholder="City, state, or remote" 
-                  className="pl-10 h-12 text-black"
+                  className="pl-10 h-12 text-white"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                 />
@@ -192,7 +192,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="rounded-lg overflow-hidden shadow-md order-2 lg:order-1">
               {/* Add error handling for image */}
-              <div className="relative w-full h-[300px] md:h-[400px]">
+              <div className="relative w-full h-75 md:h-100">
                 <Image
                   src="/images/job-search.png"
                   alt="Person searching for jobs online"
@@ -231,7 +231,7 @@ export default function Home() {
                 },
               ].map((item) => (
                 <div key={item.step} className="flex gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-yellow-500 text-black flex items-center justify-center font-bold">
+                  <div className="shrink-0 w-10 h-10 rounded-full bg-yellow-500 text-black flex items-center justify-center font-bold">
                     {item.step}
                   </div>
                   <div>

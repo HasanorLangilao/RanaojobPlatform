@@ -282,7 +282,7 @@ export function NavBar() {
                             )}
                           </div>
 
-                        <span className="max-w-[100px] truncate">{userName}</span>
+                        <span className="max-w-25 truncate">{userName}</span>
                         <ChevronDown className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
@@ -438,7 +438,7 @@ export function NavBar() {
                   <>
                     <Button
                       variant="outline"
-                      className="w-full justify-center"
+                      className="w-full justify-center "
                       onClick={() => {
                         setIsMenuOpen(false)
                         openLoginModal()
