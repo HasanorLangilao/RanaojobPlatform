@@ -14,8 +14,7 @@ import {
   XCircle,
   Trash
 } from "lucide-react"
-import { collection, getDocs, query, orderBy, deleteDoc, doc, DocumentData, QueryDocumentSnapshot } from "firebase/firestore"
-import { db } from "@/lib/firebase"
+import { collection, getDocs, query,db, orderBy, deleteDoc, doc, DocumentData, QueryDocumentSnapshot } from "@/config/firebase"
 import { format } from "date-fns"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -231,7 +230,7 @@ export default function AdminJobsPage() {
             />
           </div>
           <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-full md:w-[180px]">
+            <SelectTrigger className="w-full md:w-45">
               <SelectValue placeholder="Filter by status" />
             </SelectTrigger>
             <SelectContent>
