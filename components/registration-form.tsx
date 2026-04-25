@@ -15,12 +15,8 @@ import { AlertCircle, Upload, Eye, EyeOff, CheckCircle } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { v4 as uuidv4 } from 'uuid'
-import { auth, db } from "@/lib/firebase"
+import { auth, db,createUserWithEmailAndPassword,doc, setDoc  } from "@/config/firebase"
 
-// @ts-ignore - Firebase type issues
-import { createUserWithEmailAndPassword } from "firebase/auth"
-// @ts-ignore - Firebase type issues
-import { doc, setDoc } from "firebase/firestore"
 
 // List of Barangays in Marawi City
 const marawiBarangays = [
@@ -550,7 +546,7 @@ export function RegistrationForm({ onLoginClick, onRegisterSuccess }: Registrati
 
       {/* Success Modal */}
       <Dialog open={showSuccessModal} onOpenChange={(open) => !open && setShowSuccessModal(false)}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-106.25">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <CheckCircle className="h-6 w-6 text-green-500" />
