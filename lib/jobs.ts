@@ -1,4 +1,3 @@
-import { db } from "@/lib/firebase"
 import { 
   collection, 
   doc, 
@@ -14,8 +13,9 @@ import {
   orderBy,
   limit,
   Timestamp,
-  increment
-} from "firebase/firestore"
+  increment,
+  db
+} from "@/config/firebase"
 import { addAdminNotification, addEmployerActivity, addJobseekerNotification } from "@/lib/notifications"
 
 export interface JobPosting {
